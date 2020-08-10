@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+.Pokecard {
+  background-color: white;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 2%;
+  margin: 1%;
+}
+
+.Pokecard-Image {
+  background-color: #d3d3d3;
+}
