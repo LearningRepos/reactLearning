@@ -13,3 +13,11 @@
 .Pokecard-Image {
   background-color: #d3d3d3;
 }
+
+.Success {
+  color: green;
+}
+
+.Fail {
+  color: red;
+}
