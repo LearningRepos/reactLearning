@@ -25,8 +25,12 @@ class Dice extends React.Component {
   }
   render() {
     return (
-      <div>
-        <FontAwesomeIcon icon={this.getDiceIcon(this.props.dots)} />
+      <div className="Die">
+        <FontAwesomeIcon
+          className="Die-Die"
+          icon={this.getDiceIcon(this.props.dots)}
+          size="10x"
+        />
       </div>
     );
   }
