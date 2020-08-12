@@ -30,6 +30,7 @@ class Dice extends React.Component {
           className="Die-Die"
           icon={this.getDiceIcon(this.props.dots)}
           size="10x"
+          color="white"
         />
       </div>
     );

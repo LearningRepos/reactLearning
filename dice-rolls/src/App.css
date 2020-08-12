@@ -1,3 +1,23 @@
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e);
+	background-size: 400% 400%;
+	animation: gradient 5s ease infinite;
+  color:white;
+  overflow-x: hidden
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 .App {
   text-align: center;
 }
@@ -11,7 +31,14 @@
   padding: 10%;
 }
 
-.DiceRoll {
+.DiceRoll-Button {
+  background: none;
+  outline: none;
+  border: 0;
+  color:white;
+  border: 1px solid white;
+  padding: 1%;
+  cursor: pointer;
 }
 
 .DiceRollShake {
