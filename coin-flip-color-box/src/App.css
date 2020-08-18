@@ -1,0 +1,33 @@
+.App {
+  text-align: center;
+}
+
+.coin {
+  width: 100px;
+  height: 100px;
+}
+
+.Square {
+  /* background-color: red; */
+  width: 150px;
+  height: 150px;
+}
+
+* {
+  box-sizing: border-box;
+}
+.Grid {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+.Grid > div {
+  width: 25%;
+  height: 8vw;
+  border: white 1px solid;
+}
