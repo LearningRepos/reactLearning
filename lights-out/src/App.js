@@ -9,8 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Board />
-        <Cell />
+        <Board ncols={5} nrows={5} />
       </div>
     );
   }
