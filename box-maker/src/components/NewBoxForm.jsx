@@ -1,50 +1,38 @@
 import React from "react";
-import Box from "./Box";
 
 class NewBoxForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { color: "", width: "", height: "", boxes: [] };
+    this.state = { color: "", width: "", height: "" };
     this.handleChange = this.handleChange.bind(this);
-    this.handleForm = this.handleForm.bind(this);
+    this.addBox = this.addBox.bind(this);
   }
-  handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
+
+  //gets the deleted box and gets the index and deletes by index
+  deleteBox(evt) {
+    let deletedBox = evt.target.name;
+    this.props.deleteBox(deletedBox);
   }
-  handleForm(evt) {
+
+  addBox(evt) {
     evt.preventDefault();
     let boxItem = {
       color: this.state.color,
       width: parseInt(this.state.width),
       height: parseInt(this.state.height),
     };
-    this.setState({ boxes: [...this.state.boxes, boxItem] });
+    this.props.addBox(boxItem);
   }
-  deleteBox(evt) {
-    console.log(this.state.boxes[evt.target.name].color);
-    this.setState({
-      boxes: [...this.state.boxes].filter(
-        (b) => b.color !== this.state.boxes[evt.target.name].color
-      ),
-    });
+
+  //allows user to type in form and allow the form to change state
+  handleChange(evt) {
+    this.setState({ [evt.target.name]: evt.target.value });
   }
+
   render() {
-    const boxes = this.state.boxes.map((b, index) => (
-      <div key={index}>
-        <Box
-          key={index}
-          backgroundColor={b.color}
-          width={b.width}
-          height={b.height}
-        />
-        <button name={index} onClick={this.deleteBox.bind(this)}>
-          Remove Box
-        </button>
-      </div>
-    ));
     return (
       <div>
-        <form onSubmit={this.handleForm.bind(this)}>
+        <form onSubmit={this.addBox}>
           <label>Color:</label>
           <br />
           <input
@@ -74,7 +62,6 @@ class NewBoxForm extends React.Component {
           <br />
           <button>Create Box</button>
         </form>
-        {boxes}
       </div>
     );
   }
