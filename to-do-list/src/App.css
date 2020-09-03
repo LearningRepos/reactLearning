@@ -1,0 +1,74 @@
+body {
+  text-align: center;
+  background-color: #f907fc;
+  background-image: linear-gradient(315deg, #f907fc 0%, #05d6d9 74%);
+  background-size: 100% 600%;
+  color: white;
+}
+
+small {
+  padding-bottom: 5%;
+  border-bottom: 1px solid #a6a6a6;
+}
+
+p {
+  font-size: 200%;
+  margin: 0;
+}
+
+.App {
+  background-color: #ff6961;
+  display: inline-block;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  margin: 3%;
+  -webkit-box-shadow: -11px -5px 5px 0px rgba(166, 166, 166, 0.7);
+  -moz-box-shadow: -11px -5px 5px 0px rgba(166, 166, 166, 0.6);
+  box-shadow: -11px -5px 5px 0px rgba(166, 166, 166, 0.6);
+}
+
+.Headers {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5%;
+}
+
+.Header {
+  margin-bottom: 0;
+}
+
+.Todo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: rgba(155, 105, 97, 0.7);
+  z-index: 2;
+  margin-bottom: 5%;
+}
+
+.Todo-Icons-Div {
+  margin-left: 20px;
+}
+
+.Todo-Icons {
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+  cursor: pointer;
+}
+
+.NewTodoForm-Input {
+  padding: 3%;
+}
+
+.NewTodoForm-Button {
+  text-decoration: none;
+  border: solid 1px white;
+  background: transparent;
+  color: white;
+  padding: 3%;
+  margin-left: 10px;
+  cursor: pointer;
+  outline: none;
+}
