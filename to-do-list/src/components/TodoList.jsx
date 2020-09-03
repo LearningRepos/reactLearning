@@ -10,6 +10,7 @@ class TodoList extends React.Component {
     };
     this.addTodo = this.addTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
+    this.editTodo = this.editTodo.bind(this);
   }
   addTodo(todo) {
     this.setState({ listTodo: [...this.state.listTodo, todo] });
@@ -21,6 +22,11 @@ class TodoList extends React.Component {
       ),
     });
   }
+  editTodo(message, index) {
+    let updatedArray = [...this.state.listTodo];
+    updatedArray[index] = message;
+    this.setState({ listTodo: updatedArray });
+  }
   render() {
     const tasks = this.state.listTodo.map((t, index) => (
       <Todo
@@ -28,6 +34,7 @@ class TodoList extends React.Component {
         todoIndex={index}
         message={t}
         trashcan={this.deleteTodo}
+        editATodo={this.editTodo}
       />
     ));
     return (

@@ -23,9 +23,9 @@ p {
   padding-right: 5%;
   padding-bottom: 5%;
   margin: 3%;
-  -webkit-box-shadow: -11px -5px 5px 0px rgba(166, 166, 166, 0.7);
-  -moz-box-shadow: -11px -5px 5px 0px rgba(166, 166, 166, 0.6);
-  box-shadow: -11px -5px 5px 0px rgba(166, 166, 166, 0.6);
+  -webkit-box-shadow: -11px -5px 5px 0 rgba(166, 166, 166, 0.7);
+  -moz-box-shadow: -11px -5px 5px 0 rgba(166, 166, 166, 0.6);
+  box-shadow: -11px -5px 5px 0 rgba(166, 166, 166, 0.6);
 }
 
 .Headers {
@@ -36,6 +36,12 @@ p {
 
 .Header {
   margin-bottom: 0;
+}
+
+.Underline {
+  text-decoration: line-through;
+  color: rgba(155, 105, 97, 0.7);
+  transition: all 0.2s ease-out;
 }
 
 .Todo {
@@ -56,6 +62,26 @@ p {
   margin-left: 7.5px;
   margin-right: 7.5px;
   cursor: pointer;
+}
+
+.Todo-Edit {
+  background-color: rgba(155, 105, 97, 0.7);
+  margin-bottom: 5%;
+}
+
+.Todo-Change-Input {
+  padding: 3%;
+}
+
+.Todo-Change-Button {
+  text-decoration: none;
+  border: solid 1px white;
+  background: transparent;
+  color: white;
+  padding: 3%;
+  margin-left: 10px;
+  cursor: pointer;
+  outline: none;
 }
 
 .NewTodoForm-Input {
