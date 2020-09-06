@@ -10,6 +10,10 @@
   margin-right: 1em;
 }
 
+.icon {
+  pointer-events: none;
+}
+
 /* THE NICER STYLES MADE FOR THE FONT-AWESOME ICONS... */
 
 /* .Die {

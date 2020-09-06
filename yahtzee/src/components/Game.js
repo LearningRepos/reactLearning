@@ -39,25 +39,25 @@ class Game extends Component {
     this.roll = this.roll.bind(this);
     this.doScore = this.doScore.bind(this);
     this.toggleLocked = this.toggleLocked.bind(this);
+    this.disableButtons = this.disableButtons.bind(this);
   }
 
   roll(evt) {
     // roll dice whose indexes are in reroll
     this.setState((st) => ({
+      //randomizes dice numbers
       dice: st.dice.map((d, i) =>
         st.locked[i] ? d : Math.ceil(Math.random() * 6)
       ),
+      //locks if rolls = 0
       locked: st.rollsLeft > 1 ? st.locked : Array(NUM_DICE).fill(true),
+      //decrements rolls
       rollsLeft: st.rollsLeft - 1,
     }));
   }
 
   toggleLocked(idx) {
     // toggle whether idx is in locked or not
-    // let arr = this.state.locked;
-    // console.log(arr);
-    // console.log(arr.slice(0, idx));
-    // , !arr.slice(idx), ...arr.slice(idx + 1)
     this.setState((st) => ({
       locked: [
         ...st.locked.slice(0, idx),
@@ -69,12 +69,18 @@ class Game extends Component {
 
   doScore(rulename, ruleFn) {
     // evaluate this ruleFn with the dice and score this rulename
-    this.setState((st) => ({
-      scores: { ...st.scores, [rulename]: ruleFn(this.state.dice) },
-      rollsLeft: NUM_ROLLS,
-      locked: Array(NUM_DICE).fill(false),
-    }));
-    this.roll();
+    if (!this.state.scores[rulename]) {
+      this.setState((st) => ({
+        scores: { ...st.scores, [rulename]: ruleFn(this.state.dice) },
+        rollsLeft: NUM_ROLLS,
+        locked: Array(NUM_DICE).fill(false),
+      }));
+      this.roll();
+    }
+  }
+
+  disableButtons() {
+    return this.state.locked.every((x) => x) && this.state.rollsLeft === 0;
   }
 
   render() {
@@ -89,6 +95,7 @@ class Game extends Component {
               dice={this.state.dice}
               locked={this.state.locked}
               handleClick={this.toggleLocked}
+              disableButtons={this.disableButtons}
             />
             <div className="Game-button-wrapper">
               <button
