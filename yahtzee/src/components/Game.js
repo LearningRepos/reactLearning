@@ -4,7 +4,7 @@ import ScoreTable from "./score-components/ScoreTable";
 import "../css/Game.css";
 
 const NUM_DICE = 5;
-const NUM_ROLLS = 3;
+const NUM_ROLLS = 2;
 
 //
 class Game extends Component {
@@ -20,6 +20,7 @@ class Game extends Component {
       ],
       locked: Array(NUM_DICE).fill(false),
       rollsLeft: NUM_ROLLS,
+      rolling: false,
       scores: {
         ones: undefined,
         twos: undefined,
@@ -40,6 +41,14 @@ class Game extends Component {
     this.doScore = this.doScore.bind(this);
     this.toggleLocked = this.toggleLocked.bind(this);
     this.disableButtons = this.disableButtons.bind(this);
+    this.animateRoll = this.animateRoll.bind(this);
+    this.addUp = this.addUp.bind(this);
+  }
+
+  animateRoll() {
+    this.setState({ rolling: true }, () => {
+      setTimeout(this.roll, 1000);
+    });
   }
 
   roll(evt) {
@@ -53,6 +62,7 @@ class Game extends Component {
       locked: st.rollsLeft > 1 ? st.locked : Array(NUM_DICE).fill(true),
       //decrements rolls
       rollsLeft: st.rollsLeft - 1,
+      rolling: false,
     }));
   }
 
@@ -83,25 +93,45 @@ class Game extends Component {
     return this.state.locked.every((x) => x) && this.state.rollsLeft === 0;
   }
 
+  addUp() {
+    let count = 0;
+    for (let i in this.state.scores) {
+      if (this.state.scores[i]) {
+        count += this.state.scores[i];
+      }
+    }
+    return count;
+  }
+
+  restart() {
+    for (let i in this.state.scores) {
+      // console.log(this.state.scores[i]);
+      if (this.state.scores[i] === undefined) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   render() {
-    // console.log(this.state.locked);
+    let display = this.restart() ? "block" : "none";
     return (
       <div className="Game">
         <header className="Game-header">
           <h1 className="App-title">Yahtzee!</h1>
-
           <section className="Game-dice-section">
             <Dice
               dice={this.state.dice}
               locked={this.state.locked}
               handleClick={this.toggleLocked}
               disableButtons={this.disableButtons}
+              rolling={this.state.rolling}
             />
             <div className="Game-button-wrapper">
               <button
                 className="Game-reroll"
                 disabled={this.state.locked.every((x) => x)}
-                onClick={this.roll}
+                onClick={this.animateRoll}
               >
                 {this.state.rollsLeft} Rerolls Left
               </button>
@@ -109,6 +139,10 @@ class Game extends Component {
           </section>
         </header>
         <ScoreTable doScore={this.doScore} scores={this.state.scores} />
+        <h1>Score {this.addUp()}</h1>
+        <form style={{ display: display }}>
+          <button>Restart Game</button>
+        </form>
       </div>
     );
   }

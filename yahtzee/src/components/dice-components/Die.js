@@ -16,7 +16,6 @@ class Die extends Component {
     this.changeLock = this.changeLock.bind(this);
   }
   changeLock(evt) {
-    console.log(evt.target);
     this.props.handleClick(parseInt(evt.target.value));
     // console.log(evt.target);
   }
@@ -32,17 +31,24 @@ class Die extends Component {
     return diceArr[this.props.val];
   }
   render() {
+    let classes = "icon ";
+    if (this.props.locked) {
+      classes += "Die-locked ";
+    }
+    if (this.props.rolling && !this.props.locked) {
+      classes += "Die-rolling";
+    }
     return (
       <div>
         <button
           className={"Die"}
-          style={{ backgroundColor: this.props.locked ? "grey" : "black" }}
           onClick={this.changeLock}
           value={this.props.idx}
           disabled={this.props.disableButtons()}
         >
           <FontAwesomeIcon
-            className={"icon"}
+            size="3x"
+            className={classes}
             icon={
               [
                 faDiceOne,
