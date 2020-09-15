@@ -8,24 +8,31 @@ import { faGrinSquintTears } from "@fortawesome/free-solid-svg-icons";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { jokesArr: [] };
+    this.state = { jokesArr: [], moreJokesLoaded: false };
     this.upvote = this.upvote.bind(this);
     this.downvote = this.downvote.bind(this);
     this.generateJokes = this.generateJokes.bind(this);
   }
-  componentDidMount() {
-    for (let i = 0; i < 10; i++) {
-      axios
-        .get("https://icanhazdadjoke.com", {
+  async componentDidMount() {
+    // window.localStorage.clear();
+    if (JSON.parse(window.localStorage.getItem("jokeData"))) {
+      this.setState({
+        jokesArr: JSON.parse(window.localStorage.getItem("jokeData")),
+      });
+    } else {
+      let jokeArr = [];
+      for (let i = 0; i < 10; i++) {
+        let res = await axios.get("https://icanhazdadjoke.com", {
           headers: {
             Accept: "application/json",
           },
-        })
-        .then((result) => {
-          let originalData = result.data;
-          originalData.votes = 0;
-          this.setState({ jokesArr: [...this.state.jokesArr, originalData] });
         });
+        res.data.votes = 0;
+        console.log(res.data);
+        jokeArr.push(res.data);
+      }
+      window.localStorage.setItem("jokeData", JSON.stringify(jokeArr));
+      this.setState({ jokesArr: jokeArr });
     }
   }
   commentSort(array) {
@@ -37,26 +44,34 @@ class App extends React.Component {
     let oldArr = this.state.jokesArr;
     oldArr[index].votes++;
     this.setState({ jokesArr: this.commentSort(oldArr) });
+    window.localStorage.setItem("jokeData", JSON.stringify(oldArr));
   }
   downvote(index) {
     let oldArr = this.state.jokesArr;
     oldArr[index].votes--;
     this.setState({ jokesArr: this.commentSort(oldArr) });
+    window.localStorage.setItem("jokeData", JSON.stringify(oldArr));
   }
-  generateJokes() {
+  async generateJokes() {
+    this.setState({ moreJokesLoaded: true });
+    let jokeArr = [];
     for (let i = 0; i < 10; i++) {
-      axios
-        .get("https://icanhazdadjoke.com", {
-          headers: {
-            Accept: "application/json",
-          },
-        })
-        .then((result) => {
-          let originalData = result.data;
-          originalData.votes = 0;
-          this.setState({ jokesArr: [...this.state.jokesArr, originalData] });
-        });
+      let res = await axios.get("https://icanhazdadjoke.com", {
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      res.data.votes = 0;
+      jokeArr.push(res.data);
     }
+    setTimeout(
+      () =>
+        this.setState({
+          jokesArr: [...this.state.jokesArr, ...jokeArr],
+          moreJokesLoaded: false,
+        }),
+      2000
+    );
   }
   render() {
     // console.log(this.state.jokesArr);
@@ -79,7 +94,9 @@ class App extends React.Component {
           <FontAwesomeIcon icon={faGrinSquintTears} size="9x" />
           <button onClick={this.generateJokes}>GET JOKES</button>
         </div>
-        <div className="Jokes">{jokesMap}</div>
+        <div className="Jokes">
+          {this.state.moreJokesLoaded ? <h1>Jokes Loading</h1> : jokesMap}
+        </div>
       </div>
     );
   }
