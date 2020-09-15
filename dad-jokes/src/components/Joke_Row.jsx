@@ -6,6 +6,7 @@ import {
   faMeh,
   faSadTear,
   faSmile,
+  faGrinSquintTears,
 } from "@fortawesome/free-solid-svg-icons";
 
 class JokeRow extends React.Component {
