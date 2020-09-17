@@ -1,0 +1,90 @@
+html {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.App {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #87ceeb;
+  background-repeat: no-repeat;
+  background-size: 200vh;
+}
+
+.Vending_Machine {
+  position: relative;
+  height: 100vh;
+  background-image: url("https://64.media.tumblr.com/30221eba32ea1b60e947c547b42ea513/tumblr_nvzkh3Dgkh1uexxavo1_640.png");
+  background-repeat: no-repeat;
+  background-size: 200vh;
+  background-attachment: fixed;
+}
+
+.Vending_Machine-Intro {
+  height: 150px;
+  width: 400px;
+  background-color: rgb(128, 128, 128, 0.5);
+  border-radius: 20%;
+  display: block;
+  margin: 0;
+  position: absolute;
+  left: 10%;
+  margin-top: 15%;
+}
+
+.Vending_Machine-Navbar {
+  height: 150px;
+  width: 400px;
+  background-color: rgb(128, 128, 128, 0.5);
+  border-radius: 20%;
+  display: block;
+  margin: 0;
+  position: absolute;
+  left: 60%;
+  margin-top: 15%;
+  font-size: 200%;
+}
+
+.Vending_Machine-Main {
+  color: white;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.Vending_Machine-Link {
+  color: white;
+  display: block;
+}
+
+.Chips {
+  position: relative;
+  height: 100vh;
+  background-image: url("https://previews.123rf.com/images/kupparock/kupparock1211/kupparock121100407/16156334-the-potato-chips-background-image-close-up.jpg");
+  background-repeat: no-repeat;
+  background-size: 200vh;
+  background-attachment: fixed;
+}
+
+.Alcohol {
+  position: relative;
+  height: 100vh;
+  background-image: url("https://cdn5.vectorstock.com/i/1000x1000/00/24/alcohol-background-vector-14710024.jpg");
+  background-repeat: no-repeat;
+  background-size: 200vh;
+  background-attachment: fixed;
+}
+
+.Sardines {
+  position: relative;
+  height: 100vh;
+  background-image: url("https://post.healthline.com/wp-content/uploads/2020/01/Sardines-1200X628-facebook-800x628.jpg");
+  background-repeat: no-repeat;
+  background-size: 200vh;
+  background-attachment: fixed;
+}
