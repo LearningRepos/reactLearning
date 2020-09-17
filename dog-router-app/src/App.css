@@ -1,0 +1,62 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  background-color: #bd4f6c;
+  background-image: linear-gradient(326deg, #bd4f6c 0%, #d7816a 74%);
+  text-align: center;
+  color: white;
+  height: 100vh;
+}
+
+.Dog-Header {
+  font-size: 300%;
+  letter-spacing: 2px;
+}
+
+.Dog-Profiles {
+  display: flex;
+  justify-content: center;
+}
+
+.Dog_Profile {
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+.Dog_Profile-Image {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  filter: grayscale(100%);
+}
+
+.Dog_Profile-Image:hover {
+  filter: grayscale(0%);
+  width: 225px;
+  height: 225px;
+  transition: all 0.5s;
+}
+
+.Dog_Profile-Name {
+  font-size: 150%;
+}
+
+.Dog_Information {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Dog_Information-Back {
+  text-decoration: none;
+  color: white;
+}
+
+.Dog_Information-Back:hover {
+  color: white;
+  text-decoration: none;
+}
