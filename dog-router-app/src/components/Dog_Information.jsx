@@ -22,7 +22,7 @@ class Dog_Information extends React.Component {
               </ListGroup>
             </Card>
             <Button variant="primary">
-              <Link className="Dog_Information-Back" exact to={"/"}>
+              <Link className="Dog_Information-Back" exact to={"/dogs"}>
                 Go Back
               </Link>
             </Button>
