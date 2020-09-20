@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
-import Dog_Profile from "./components/Dog_Profile";
-import Dog_Information from "./components/Dog_Information";
-import { Switch, Route, Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Dog_Profile from "./components/Dog_Profile";
+import Dog_Information from "./components/Dog_Information";
+import Calculate from "./components/Calculate";
+import { Switch, Route, Link } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class App extends React.Component {
 
   render() {
     const navUrls = this.props.dogs.map((d, idx) => (
-      <div>
+      <div key={idx}>
         <Nav.Link>
           <Link className="Dog_Information-Back" exact to={"/dogs/" + d.name}>
             {d.name}
@@ -59,6 +60,11 @@ class App extends React.Component {
             )}
           />
           {profileUrls}
+          <Route
+            exact
+            path="/:operation/:one/:two"
+            render={(props) => <Calculate {...props} />}
+          />
           <Route
             render={() => (
               <div>
