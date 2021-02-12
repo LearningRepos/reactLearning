@@ -25,3 +25,8 @@ code .
 npm i .
 npm start
 ```
+
+## What I Learnt
+
+I learnt a lot over the past few months(and more) of building projects with React.
+A summed up list of all the topics are : JSX, Props, CRA, State, React Events, Forms, Lifecycle Methods, Calling APIS via Axios, React Router, Hooks, Context API, NextJS, and a bit of Webpack
