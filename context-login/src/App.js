@@ -4,16 +4,18 @@ import Form from "./Form";
 import PageContent from "./PageContent";
 
 import { ThemeProvider } from "./contexts/ThemeContexts";
-import randomThing from "./contexts/ThemeContexts";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 class App extends React.Component {
   render() {
     return (
       <ThemeProvider>
-        <PageContent>
-          <Navbar />
-          <Form />
-        </PageContent>
+        <LanguageProvider>
+          <PageContent>
+            <Navbar />
+            <Form />
+          </PageContent>
+        </LanguageProvider>
       </ThemeProvider>
     );
   }

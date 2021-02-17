@@ -21,5 +21,3 @@ export class ThemeProvider extends React.Component {
     );
   }
 }
-
-export default 1;
