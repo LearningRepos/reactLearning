@@ -4,15 +4,16 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.21.1",
     "next": "^9.3.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server1.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server1.js"
   },
   "keywords": [],
   "author": "",
