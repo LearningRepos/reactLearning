@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, memo } from "react";
 import useToggleState from "./hooks/useToggleState";
 import EditTodoForm from "./EditTodoForm";
 import ListItem from "@material-ui/core/ListItem";
@@ -8,24 +8,21 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import { dispatchContext } from "./context/todos.context";
 
-function Todo({ id, task, completed, removeTodo, toggleTodo, editTodo }) {
+function Todo({ id, task, completed }) {
+  const { dispatch } = useContext(dispatchContext);
   const [isEditing, toggle] = useToggleState(false);
   return (
     <ListItem style={{ height: "64px" }}>
       {isEditing ? (
-        <EditTodoForm
-          editTodo={editTodo}
-          id={id}
-          task={task}
-          toggleEditForm={toggle}
-        />
+        <EditTodoForm id={id} task={task} toggleEditForm={toggle} />
       ) : (
         <>
           <Checkbox
             tabIndex={-1}
             checked={completed}
-            onClick={() => toggleTodo(id)}
+            onClick={() => dispatch({ type: "TOGGLE", id: id })}
           />
           <ListItemText
             style={{ textDecoration: completed ? "line-through" : "none" }}
@@ -33,10 +30,13 @@ function Todo({ id, task, completed, removeTodo, toggleTodo, editTodo }) {
             {task}
           </ListItemText>
           <ListItemSecondaryAction>
-            <IconButton aria-label='Delete' onClick={() => removeTodo(id)}>
+            <IconButton
+              aria-label="Delete"
+              onClick={() => dispatch({ type: "REMOVE", id: id })}
+            >
               <DeleteIcon />
             </IconButton>
-            <IconButton aria-label='Edit' onClick={toggle}>
+            <IconButton aria-label="Edit" onClick={toggle}>
               <EditIcon />
             </IconButton>
           </ListItemSecondaryAction>
@@ -46,4 +46,4 @@ function Todo({ id, task, completed, removeTodo, toggleTodo, editTodo }) {
   );
 }
 
-export default Todo;
+export default memo(Todo);
